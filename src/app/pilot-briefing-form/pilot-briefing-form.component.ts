@@ -42,7 +42,7 @@ export class PilotBriefingFormComponent implements OnInit {
     );
   }
 
-  validateInputs() {
+  submit() {
     // will show validation errors in user interface after first submit
     this.submitted = true;
 
