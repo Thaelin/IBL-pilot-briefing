@@ -1,0 +1,21 @@
+<section *ngIf="stationDataMap" class="col-md-12">
+  <h1>Pilot Briefing Report</h1>
+  <table class="table table-bordered table-sm">
+    <ng-container *ngFor="let station of stationDataMap | keyvalue">
+      <tr>
+        <th>{{ station.key }}</th>
+        <th></th>
+        <th></th>
+      </tr>
+      <tr *ngFor="let stationRow of station.value">
+        <td>{{ stationRow.queryType }}</td>
+        <td>{{ stationRow.reportTime | date: "dd.MM.yyyy HH:mm:ss" }}</td>
+        <td [innerHTML]="stationRow.textHTML"></td>
+      </tr>
+    </ng-container>
+  </table>
+
+  <div class="text-center">
+    <p *ngIf="stationDataMap.size === 0">No data to show</p>
+  </div>
+</section>
