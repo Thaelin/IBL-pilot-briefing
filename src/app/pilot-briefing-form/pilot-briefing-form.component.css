@@ -6,9 +6,20 @@
 
 input[type="text"] {
   height: 26px;
-  float: right;
+  min-width: 65%;
+  margin-left: auto;
 }
 
 label {
   margin: 0 25px 0 0;
+  font-weight: bolder;
+}
+
+.checkboxes-group {
+  justify-content: space-between;
+}
+
+label.form-check-label {
+  font-weight: normal;
+  margin-right: 0px;
 }
