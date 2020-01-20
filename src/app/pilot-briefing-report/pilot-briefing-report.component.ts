@@ -38,7 +38,7 @@ export class PilotBriefingReportComponent implements OnInit, OnChanges {
       const stationData = {
         queryType: row["queryType"],
         reportTime: row["reportTime"],
-        textHTML: row["textHTML"]
+        textHTML: row["textHTML"] || row["text"]
       };
       if (this.stationDataMap.get(row["stationId"])) {
         this.stationDataMap.get(row["stationId"]).push(stationData);
