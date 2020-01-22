@@ -51,12 +51,10 @@ export class PilotBriefingReportComponent implements OnInit, OnChanges {
 
   colorizeBriefingText(text: string): string {
     // predspracovanie vstupneho textu a ziskanie ziskanie pola tokenov
-    const tokens = text
-      .replace("\n", " ")
-      .replace("=", "")
-      .split(" ");
+    const tokens = text.replace("=", "").split(" ");
     // regexp na zachytenie konkretnych tokenov
-    const regexp = /^FEW[0-9]{3}$|^SCT[0-9]{3}$|^BKN[0-9]{3}$/gm;
+    const regexp = /FEW[0-9]{3}|SCT[0-9]{3}|BKN[0-9]{3}/;
+    //const regexp = /^[A-Z]{3}\d{3}$/;
 
     tokens.forEach((token, i) => {
       if (regexp.test(token)) {
