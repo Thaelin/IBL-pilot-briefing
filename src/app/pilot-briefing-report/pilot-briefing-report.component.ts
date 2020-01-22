@@ -38,7 +38,7 @@ export class PilotBriefingReportComponent implements OnInit, OnChanges {
       const stationData = {
         queryType: row["queryType"],
         reportTime: row["reportTime"],
-        textHTML: row["textHTML"] || row["text"]
+        textHTML: this.colorizeBriefingText(row["text"])
       };
       if (this.stationDataMap.get(row["stationId"])) {
         this.stationDataMap.get(row["stationId"]).push(stationData);
@@ -47,6 +47,27 @@ export class PilotBriefingReportComponent implements OnInit, OnChanges {
       }
     });
     console.log(this.stationDataMap);
+  }
+
+  colorizeBriefingText(text: string): string {
+    const tokens = text
+      .replace("\n", " ")
+      .replace("=", "")
+      .split(" ");
+    const regexp = /^FEW[0-9]{3}$|^SCT[0-9]{3}$|^BKN[0-9]{3}$/gm;
+
+    tokens.forEach((token, i) => {
+      if (regexp.test(token)) {
+        const value = parseInt(token.substring(3, 6), 10);
+        if (value <= 30) {
+          tokens[i] = '<span class="blue">' + token + "</span>";
+        } else {
+          tokens[i] = '<span class="red">' + token + "</span>";
+        }
+      }
+    });
+
+    return tokens.join(" ") + "=";
   }
 }
 

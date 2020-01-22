@@ -1,3 +1,11 @@
 th {
   background-color: whitesmoke;
 }
+
+::ng-deep .blue {
+  color: blue;
+}
+
+::ng-deep .red {
+  color: red;
+}
